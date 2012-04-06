@@ -10,6 +10,8 @@ public class SandStorm {
 	}
 	
 	public static void main(String[] args){
+		System.out.println("Welcome to SandStorm " + version + "! I shall now execute the test script");
+		
 		String[] lines = new String[]{
 				"var gabe = \"GABE NEWELL ROCKS\";",
 		};

@@ -29,23 +29,15 @@ public class Parser {
 		int lineNumber = 0;
 		
 		for (String line : lines){
+			Validate.notNull(line);
+			
 			lineNumber += 1;
 			
-			line = fixLine(line, lineNumber);
+			FixedLine fixedLine = fixLine(line, lineNumber);
+			
+			line = fixedLine.getLine();
 			
 			System.out.println(line);
-			
-			if (line.startsWith(Constants.VARIABLE_DECLARATION)){
-				if (line.replace(Constants.VARIABLE_DECLARATION, "").equals("")){
-					throw new ParseException(lineNumber);
-				}
-				
-				/*if (line.contains(Constants.EQUAL_SIGN)){
-					String value = line.replace(Constants.VARIABLE_DECLARATION + Constants.EQUAL_SIGN, "");
-					
-					variables.add(new Variable())
-				}*/
-			}
 		}
 	}
 	
@@ -69,7 +61,7 @@ public class Parser {
 		return newLine;
 	}
 	
-	private String fixLine(String line, int lineNumber) throws ParseException {
+	private FixedLine fixLine(String line, int lineNumber) throws ParseException {
 		String newLine = "";
 		
 		line = trimBeginningSpaces(line);
@@ -79,8 +71,6 @@ public class Parser {
 		if (lineType == null){
 			throw new ParseException(lineNumber);
 		}
-		
-		System.out.println(lineType.name());
 		
 		boolean removeSpaces = true;
 		
@@ -100,6 +90,14 @@ public class Parser {
 		
 		newLine = lineType.getStartsWith() + " " + newLine.trim();
 		
-		return newLine;
+		if (newLine.replace(lineType.getStartsWith(), "").trim().equals("")){
+			throw new ParseException(lineNumber);
+		}
+		
+		return new FixedLine(newLine, lineType);
+	}
+	
+	public Set<Variable> getVariables(){
+		return variables;
 	}
 }

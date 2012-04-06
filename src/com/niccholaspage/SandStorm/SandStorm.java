@@ -11,7 +11,7 @@ public class SandStorm {
 	
 	public static void main(String[] args){
 		String[] lines = new String[]{
-				"var gabe",
+				"var gabe = \"GABE NEWELL ROCKS\";",
 		};
 		
 		new Parser(lines);

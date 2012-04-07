@@ -27,8 +27,16 @@ public class VariableParser {
 		
 		try {
 			value = Integer.parseInt(stringValue);
+			
+			if (SandStorm.isDebugging()){
+				System.out.println("I'm an integer");
+			}
 		}catch (NumberFormatException e){
 			value = stringValue;
+			
+			if (SandStorm.isDebugging()){
+				System.out.println("I'm a string");
+			}
 		}
 	}
 	

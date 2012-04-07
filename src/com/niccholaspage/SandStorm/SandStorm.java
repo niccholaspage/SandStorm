@@ -9,7 +9,8 @@ public class SandStorm {
 		String[] lines = new String[]{
 				"var gabe = \"GABE NEWELL ROCKS\"",
 				"var nick = \"NICK IS COOL\"",
-				"var nick =",
+				"var red = 9",
+				"var blue =",
 		};
 		
 		new Parser(lines);

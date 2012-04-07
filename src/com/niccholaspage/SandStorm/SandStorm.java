@@ -10,10 +10,11 @@ public class SandStorm {
 	}
 	
 	public static void main(String[] args){
-		System.out.println("Welcome to SandStorm " + version + "! I shall now execute the test script");
+		System.out.println("Welcome to SandStorm " + version + "! I shall now execute the test script.");
 		
 		String[] lines = new String[]{
-				"var gabe = \"GABE NEWELL ROCKS\";",
+				"var gabe = \"GABE NEWELL ROCKS\"",
+				"var nick = \"NICK IS COOL\"",
 		};
 		
 		new Parser(lines);

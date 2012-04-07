@@ -6,6 +6,7 @@ import java.util.Set;
 import com.niccholaspage.SandStorm.SandStorm;
 import com.niccholaspage.SandStorm.Validate;
 import com.niccholaspage.SandStorm.language.variables.Variable;
+import com.niccholaspage.SandStorm.language.variables.VariableParser;
 
 public class Parser {
 	private final String[] lines;

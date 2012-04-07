@@ -1,7 +1,7 @@
-package com.niccholaspage.SandStorm.language;
+package com.niccholaspage.SandStorm.language.variables;
 
 import com.niccholaspage.SandStorm.SandStorm;
-import com.niccholaspage.SandStorm.language.variables.Variable;
+import com.niccholaspage.SandStorm.language.Constants;
 
 public class VariableParser {
 	private final String name;

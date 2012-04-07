@@ -107,9 +107,15 @@ public class Parser {
 		}
 
 		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Constants.EQUAL_SIGN)){
-
+			VariableParser variableParser = new VariableParser(variableLine);
 			
-			variables.add(new VariableParser(variableLine).getVariable());
+			Variable oldVariable = getVariable(variableParser.getName());
+			
+			if (oldVariable != null){
+				variables.remove(oldVariable);
+			}
+			
+			variables.add(new Variable(variableParser.getName(), variableParser.getValue()));
 		}
 
 		return new FixedLine(newLine, lineType);
@@ -117,5 +123,15 @@ public class Parser {
 
 	public Set<Variable> getVariables(){
 		return variables;
+	}
+	
+	public Variable getVariable(String name){
+		for (Variable variable : variables){
+			if (variable.getName().equals(name)){
+				return variable;
+			}
+		}
+		
+		return null;
 	}
 }

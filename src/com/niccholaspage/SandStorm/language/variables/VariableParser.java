@@ -40,7 +40,11 @@ public class VariableParser {
 		}
 	}
 	
-	public Variable getVariable(){
-		return new Variable(name, value);
+	public String getName(){
+		return name;
+	}
+	
+	public Object getValue(){
+		return value;
 	}
 }

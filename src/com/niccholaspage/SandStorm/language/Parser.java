@@ -5,6 +5,8 @@ import java.util.Set;
 
 import com.niccholaspage.SandStorm.SandStorm;
 import com.niccholaspage.SandStorm.Validate;
+import com.niccholaspage.SandStorm.language.function.Function;
+import com.niccholaspage.SandStorm.language.function.FunctionParser;
 import com.niccholaspage.SandStorm.language.variables.Variable;
 import com.niccholaspage.SandStorm.language.variables.VariableParser;
 
@@ -21,13 +23,13 @@ public class Parser {
 		variables = new HashSet<Variable>();
 
 		try {
-			parse();
+			run();
 		} catch (ParseException e){
 			e.printStackTrace();
 		}
 	}
 
-	private void parse() throws ParseException {
+	private void run() throws ParseException {
 		int lineNumber = 0;
 
 		for (String line : lines){
@@ -116,6 +118,28 @@ public class Parser {
 			}
 			
 			variables.add(new Variable(variableParser.getName(), variableParser.getValue()));
+		}
+		
+		if (lineType == LineType.CALL){
+			if (!(variableLine.contains(Constants.OPEN_METHOD) && variableLine.contains(Constants.CLOSE_METHOD))){
+				throw new ParseException(lineNumber, "Invalid function call");
+			}
+			
+			FunctionParser functionParser = new FunctionParser(variableLine);
+			
+			String name = functionParser.getFunction();
+			
+			Class<? extends Function> function = Constants.getFunction(name);
+			
+			if (function == null){
+				throw new ParseException(lineNumber, "Function doesn't exist");
+			}
+			
+			try {
+				function.newInstance().run();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 		}
 
 		return new FixedLine(newLine, lineType);

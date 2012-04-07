@@ -11,6 +11,7 @@ public class SandStorm {
 				"var nick = \"NICK IS COOL\"",
 				"var red = 9",
 				"var blue =",
+				"call echo()",
 		};
 		
 		new Parser(lines);

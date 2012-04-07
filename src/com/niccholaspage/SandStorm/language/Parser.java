@@ -76,7 +76,7 @@ public class Parser {
 		LineType lineType = LineType.getType(line);
 
 		if (lineType == null){
-			throw new ParseException(lineNumber);
+			throw new ParseException(lineNumber, "Invalid line type");
 		}
 
 		boolean removeSpaces = true;
@@ -102,23 +102,13 @@ public class Parser {
 		newLine = lineType.getStartsWith() + " " + newLine;
 
 		if (newLine.replace(lineType.getStartsWith(), "").trim().equals("")){
-			throw new ParseException(lineNumber);
+			throw new ParseException(lineNumber, "Invalid line declaration");
 		}
 
 		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Constants.EQUAL_SIGN)){
-			int index = variableLine.lastIndexOf(Constants.EQUAL_SIGN);
 
-			String name = variableLine.substring(0, index);
-
-			String value = variableLine.substring(index + 1);
 			
-			if (SandStorm.isDebugging()){
-				System.out.println("Variable Name: " + name);
-				
-				System.out.println("Variable Value: " + value);
-			}
-			
-			variables.add(new Variable(name, value));
+			variables.add(new VariableParser(variableLine).getVariable());
 		}
 
 		return new FixedLine(newLine, lineType);

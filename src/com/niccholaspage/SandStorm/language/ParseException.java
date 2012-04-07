@@ -4,12 +4,15 @@ package com.niccholaspage.SandStorm.language;
 public class ParseException extends Exception {
 	private final int line;
 	
-	public ParseException(int line){
+	private final String error;
+	
+	public ParseException(int line, String error){
 		this.line = line;
+		
+		this.error = error;
 	}
 	
-	@Override
 	public String getMessage(){
-		return "Error at line " + line;
+		return "Error at line " + line + ": " + error;
 	}
 }

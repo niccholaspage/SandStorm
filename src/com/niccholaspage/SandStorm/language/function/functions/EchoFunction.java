@@ -3,11 +3,11 @@ package com.niccholaspage.SandStorm.language.function.functions;
 import com.niccholaspage.SandStorm.language.function.Function;
 
 public class EchoFunction implements Function {
-	public void run(Object... functions){
+	public void run(Object... args){
 		String message = "No argument passed!";
 		
-		if (functions.length > 0 && functions[0] instanceof String){
-			message = (String) functions[0];
+		if (args.length > 0 && args[0] instanceof String){
+			message = (String) args[0];
 		}
 		
 		System.out.println(message);

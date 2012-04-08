@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.niccholaspage.SandStorm.SandStorm;
 import com.niccholaspage.SandStorm.Validate;
+import com.niccholaspage.SandStorm.language.check.CheckParser;
 import com.niccholaspage.SandStorm.language.function.Function;
 import com.niccholaspage.SandStorm.language.function.FunctionParser;
 import com.niccholaspage.SandStorm.language.variables.Variable;
@@ -19,7 +20,7 @@ public class Parser {
 		Validate.notNull(lines);
 
 		this.lines = lines;
-
+		
 		variables = new HashSet<Variable>();
 
 		try {
@@ -34,12 +35,12 @@ public class Parser {
 
 		for (String line : lines){
 			Validate.notNull(line);
+
+			lineNumber += 1;
 			
 			if (line.startsWith("//")){
 				continue;
 			}
-
-			lineNumber += 1;
 
 			FixedLine fixedLine = fixLine(line, lineNumber);
 
@@ -108,7 +109,7 @@ public class Parser {
 			throw new ParseException(lineNumber, "Invalid line declaration");
 		}
 
-		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Constants.EQUAL_SIGN)){
+		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Constants.DEFINE_SIGN)){
 			VariableParser variableParser = new VariableParser(variableLine);
 			
 			Variable oldVariable = getVariable(variableParser.getName());
@@ -121,7 +122,7 @@ public class Parser {
 		}
 		
 		if (lineType == LineType.CALL){
-			if (!(variableLine.contains(Constants.OPEN_METHOD) && variableLine.contains(Constants.CLOSE_METHOD))){
+			if (!containsMethod(variableLine)){
 				throw new ParseException(lineNumber, "Invalid function call");
 			}
 			
@@ -141,8 +142,24 @@ public class Parser {
 				e.printStackTrace();
 			}
 		}
+		
+		if (lineType == LineType.IF){
+			if (!containsMethod(variableLine) || !variableLine.contains(Constants.OPEN_BRACKET)){
+				throw new ParseException(lineNumber, "Invalid if statement");
+			}
+			
+			CheckParser checkParser = new CheckParser(variableLine);
+			
+			if (checkParser.getBoolean()){
+				
+			}
+		}
 
 		return new FixedLine(newLine, lineType);
+	}
+	
+	private boolean containsMethod(String line){
+		return line.contains(Constants.OPEN_METHOD) && line.contains(Constants.CLOSE_METHOD);
 	}
 
 	public Set<Variable> getVariables(){

@@ -2,7 +2,8 @@ package com.niccholaspage.SandStorm.language;
 
 public enum LineType {
 	VARIABLE_DECLARATION(Constants.VARIABLE_DECLARATION),
-	CALL(Constants.CALL);
+	CALL(Constants.CALL),
+	IF(Constants.IF);
 	
 	private final String startsWith;
 	

@@ -9,7 +9,7 @@ public class VariableParser {
 	private Object value;
 	
 	public VariableParser(String line){
-		int index = line.lastIndexOf(Constants.EQUAL_SIGN);
+		int index = line.lastIndexOf(Constants.DEFINE_SIGN);
 
 		name = line.substring(0, index);
 

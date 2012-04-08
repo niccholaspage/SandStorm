@@ -12,6 +12,7 @@ public class Constants {
 	public final static String EQUAL_SIGN = "=";
 	public final static String OPEN_METHOD = "(";
 	public final static String CLOSE_METHOD = ")";
+	public final static String ARGUMENT_SEPARATOR = ",";
 	
 	public static Map<String, Class<? extends Function>> functions;
 	

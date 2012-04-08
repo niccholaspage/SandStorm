@@ -136,7 +136,7 @@ public class Parser {
 			}
 			
 			try {
-				function.newInstance().run();
+				function.newInstance().run(functionParser.getArguments());
 			} catch (Exception e){
 				e.printStackTrace();
 			}

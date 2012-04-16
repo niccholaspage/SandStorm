@@ -120,6 +120,8 @@ public class Parser {
 				variables.remove(oldVariable);
 			}
 			
+			lineTypeDefined(lineType);
+			
 			variables.add(new Variable(variableParser.getName(), variableParser.getValue()));
 		}
 		
@@ -176,5 +178,9 @@ public class Parser {
 		}
 		
 		return null;
+	}
+	
+	private void lineTypeDefined(LineType lineType){
+		
 	}
 }

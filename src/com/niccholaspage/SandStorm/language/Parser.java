@@ -22,15 +22,9 @@ public class Parser {
 		this.lines = lines;
 		
 		variables = new HashSet<Variable>();
-
-		try {
-			run();
-		} catch (ParseException e){
-			e.printStackTrace();
-		}
 	}
 
-	private void run() throws ParseException {
+	public void run(){
 		int lineNumber = 0;
 
 		for (String line : lines){
@@ -42,7 +36,15 @@ public class Parser {
 				continue;
 			}
 
-			FixedLine fixedLine = fixLine(line, lineNumber);
+			FixedLine fixedLine;
+			
+			try {
+				fixedLine = fixLine(line, lineNumber);
+			} catch (ParseException e){
+				e.printStackTrace();
+				
+				return;
+			}
 
 			line = fixedLine.getLine();
 			

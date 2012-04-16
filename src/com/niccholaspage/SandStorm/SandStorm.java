@@ -15,7 +15,7 @@ public class SandStorm {
 				"call echo(\"I like trains!\")"
 		};
 		
-		new Parser(lines);
+		new Parser(lines).run();
 	}
 	
 	public static boolean isDebugging(){

@@ -1,6 +1,8 @@
 package com.niccholaspage.SandStorm.language;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.niccholaspage.SandStorm.SandStorm;
@@ -15,6 +17,8 @@ public class Parser {
 	private final String[] lines;
 
 	private final Set<Variable> variables;
+	
+	private final Map<String, Class<? extends Function>> functions;
 
 	public Parser(String[] lines){
 		Validate.notNull(lines);
@@ -22,6 +26,22 @@ public class Parser {
 		this.lines = lines;
 		
 		variables = new HashSet<Variable>();
+		
+		functions = new HashMap<String, Class<? extends Function>>();
+	}
+	
+	public void addFunction(String name, Class<? extends Function> function){
+		functions.put(name, function);
+	}
+	
+	private Class<? extends Function> getFunction(String name){
+		for (String function : functions.keySet()){
+			if (function.equals(name)){
+				return functions.get(name);
+			}
+		}
+		
+		return null;
 	}
 
 	public void run(){
@@ -137,7 +157,11 @@ public class Parser {
 			Class<? extends Function> function = Constants.getFunction(name);
 			
 			if (function == null){
-				throw new ParseException(lineNumber, "Function doesn't exist");
+				function = getFunction(name);
+				
+				if (function == null){
+					throw new ParseException(lineNumber, "Function doesn't exist");
+				}
 			}
 			
 			try {

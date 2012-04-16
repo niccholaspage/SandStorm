@@ -1,7 +1,5 @@
 package com.niccholaspage.SandStorm;
 
-import com.niccholaspage.SandStorm.language.Parser;
-
 public class SandStorm {
 	public SandStorm(){
 		System.out.println("Welcome to SandStorm " + getVersion() + "! I shall now execute the test script.");
@@ -12,10 +10,11 @@ public class SandStorm {
 				"var red = 9",
 				"var blue =",
 				"call echo()",
-				"call echo(\"I like trains!\")"
+				"call echo(\"I like trains!\")",
+				"call derp()"
 		};
 		
-		new Parser(lines).run();
+		new BestParserEver(lines).run();
 	}
 	
 	public static boolean isDebugging(){

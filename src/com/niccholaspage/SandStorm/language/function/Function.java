@@ -1,5 +1,5 @@
 package com.niccholaspage.SandStorm.language.function;
 
 public interface Function {
-	public void run(Object... functions);
+	public void run(Object... args);
 }

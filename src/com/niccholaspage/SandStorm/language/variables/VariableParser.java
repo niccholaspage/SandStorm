@@ -13,7 +13,7 @@ public class VariableParser {
 
 		name = line.substring(0, index);
 
-		String stringValue = line.substring(index + 1);
+		String stringValue = SandStorm.parseDoubleQuotations(line.substring(index + 1));
 		
 		if (SandStorm.isDebugging()){
 			System.out.println("Variable Name: " + name);

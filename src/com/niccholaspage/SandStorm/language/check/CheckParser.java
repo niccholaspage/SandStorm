@@ -12,12 +12,8 @@ public class CheckParser {
 		
 		String check = line.substring(openIndex + 1, closeIndex);
 		
-		if (check.equals(Constants.TRUE)){
-			bool = true;
-			
-			return;
-		}else if (check.equals(Constants.FALSE)){
-			bool = false;
+		if (check.equalsIgnoreCase(Constants.TRUE) || check.equalsIgnoreCase(Constants.FALSE)){
+			bool = check.equals(Constants.TRUE);
 			
 			return;
 		}

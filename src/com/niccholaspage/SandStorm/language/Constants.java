@@ -23,22 +23,22 @@ public class Constants {
 	public static Map<String, Class<? extends Function>> functions;
 	
 	public static Map<String, Class<? extends Function>> getFunctions(){
-		if (functions == null){
-			functions = new HashMap<String, Class<? extends Function>>();
-			
-			functions.put("echo", EchoFunction.class);
-		}
-		
 		return functions;
 	}
 	
 	public static Class<? extends Function> getFunction(String name){
-		for (String function : getFunctions().keySet()){
+		for (String function : functions.keySet()){
 			if (function.equals(name)){
-				return getFunctions().get(name);
+				return functions.get(name);
 			}
 		}
 		
 		return null;
+	}
+	
+	static {
+		functions = new HashMap<String, Class<? extends Function>>();
+		
+		functions.put("echo", EchoFunction.class);
 	}
 }

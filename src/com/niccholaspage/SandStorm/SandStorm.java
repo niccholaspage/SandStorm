@@ -26,11 +26,11 @@ public class SandStorm {
 	}
 	
 	public static String parseDoubleQuotations(String line){
-		if (line.startsWith("\"")){
+		if (line.startsWith(Phrase.DOUBLE_QUOTE.toString())){
 			line = line.substring(1);
 		}
 		
-		if (line.endsWith("\"")){
+		if (line.endsWith(Phrase.DOUBLE_QUOTE.toString())){
 			line = line.substring(0, line.length() - 1);
 		}
 		

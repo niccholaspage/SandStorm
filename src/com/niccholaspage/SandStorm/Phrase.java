@@ -13,7 +13,8 @@ public enum Phrase {
 	CLOSE_BRACKET("}"),
 	ARGUMENT_SEPARATOR(","),
 	TRUE("true"),
-	FALSE("false");
+	FALSE("false"),
+	DOUBLE_QUOTE("\"");
 
 	private String defaultMessage;
 	

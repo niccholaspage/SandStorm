@@ -2,7 +2,7 @@ package com.niccholaspage.SandStorm;
 
 public class SandStorm {
 	public SandStorm(){
-		System.out.println("Welcome to SandStorm " + getVersion() + "! I shall now execute the test script.");
+		System.out.println(Phrase.WELCOME_TO_SANDSTORM.parse(getVersion()));
 		
 		String[] lines = new String[]{
 				"var gabe = \"GABE NEWELL ROCKS\"",

@@ -1,7 +1,7 @@
 package com.niccholaspage.SandStorm.language.function;
 
+import com.niccholaspage.SandStorm.Phrase;
 import com.niccholaspage.SandStorm.SandStorm;
-import com.niccholaspage.SandStorm.language.Constants;
 
 public class FunctionParser {
 	private final String function;
@@ -9,7 +9,7 @@ public class FunctionParser {
 	private final Object[] arguments;
 	
 	public FunctionParser(String line){
-		int openIndex = line.lastIndexOf(Constants.OPEN_METHOD);
+		int openIndex = line.lastIndexOf(Phrase.OPEN_METHOD.toString());
 
 		function = line.substring(0, openIndex);
 		
@@ -17,7 +17,7 @@ public class FunctionParser {
 			System.out.println("Function Name: " + function);
 		}
 		
-		int closeIndex = line.lastIndexOf(Constants.CLOSE_METHOD);
+		int closeIndex = line.lastIndexOf(Phrase.CLOSE_METHOD.toString());
 		
 		String unparsedArgs = line.substring(openIndex + 1, closeIndex);
 		
@@ -25,7 +25,7 @@ public class FunctionParser {
 			System.out.println("Unparsed Arguments: " + unparsedArgs);
 		}
 		if (!unparsedArgs.isEmpty()){
-			String[] args = unparsedArgs.split(Constants.ARGUMENT_SEPARATOR);
+			String[] args = unparsedArgs.split(Phrase.ARGUMENT_SEPARATOR.toString());
 			
 			for (int i = 0; i < args.length; i++){
 				args[i] = SandStorm.parseDoubleQuotations(args[i]);

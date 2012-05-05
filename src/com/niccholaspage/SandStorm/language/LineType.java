@@ -1,11 +1,17 @@
 package com.niccholaspage.SandStorm.language;
 
+import com.niccholaspage.SandStorm.Phrase;
+
 public enum LineType {
-	VARIABLE_DECLARATION(Constants.VARIABLE_DECLARATION),
-	CALL(Constants.CALL),
-	IF(Constants.IF);
+	VARIABLE_DECLARATION(Phrase.VARIABLE_DECLARATION),
+	CALL(Phrase.CALL),
+	IF(Phrase.IF);
 	
 	private final String startsWith;
+	
+	private LineType(Phrase phrase){
+		this(phrase.toString());
+	}
 	
 	private LineType(String startsWith){
 		this.startsWith = startsWith;

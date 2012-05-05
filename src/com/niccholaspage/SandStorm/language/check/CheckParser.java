@@ -1,19 +1,19 @@
 package com.niccholaspage.SandStorm.language.check;
 
-import com.niccholaspage.SandStorm.language.Constants;
+import com.niccholaspage.SandStorm.Phrase;
 
 public class CheckParser {
 	private final boolean bool;
 	
 	public CheckParser(String line){
-		int openIndex = line.lastIndexOf(Constants.OPEN_METHOD);
+		int openIndex = line.lastIndexOf(Phrase.OPEN_METHOD.toString());
 		
-		int closeIndex = line.lastIndexOf(Constants.CLOSE_METHOD);
+		int closeIndex = line.lastIndexOf(Phrase.CLOSE_METHOD.toString());
 		
 		String check = line.substring(openIndex + 1, closeIndex);
 		
-		if (check.equalsIgnoreCase(Constants.TRUE) || check.equalsIgnoreCase(Constants.FALSE)){
-			bool = check.equals(Constants.TRUE);
+		if (check.equalsIgnoreCase(Phrase.TRUE.toString()) || check.equalsIgnoreCase(Phrase.FALSE.toString())){
+			bool = check.equals(Phrase.TRUE.toString());
 			
 			return;
 		}

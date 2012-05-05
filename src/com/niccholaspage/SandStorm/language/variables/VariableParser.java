@@ -1,7 +1,7 @@
 package com.niccholaspage.SandStorm.language.variables;
 
+import com.niccholaspage.SandStorm.Phrase;
 import com.niccholaspage.SandStorm.SandStorm;
-import com.niccholaspage.SandStorm.language.Constants;
 
 public class VariableParser {
 	private final String name;
@@ -9,7 +9,7 @@ public class VariableParser {
 	private Object value;
 	
 	public VariableParser(String line){
-		int index = line.lastIndexOf(Constants.DEFINE_SIGN);
+		int index = line.lastIndexOf(Phrase.DEFINE_SIGN.toString());
 
 		name = line.substring(0, index);
 

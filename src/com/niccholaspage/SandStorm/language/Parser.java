@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.niccholaspage.SandStorm.Phrase;
 import com.niccholaspage.SandStorm.SandStorm;
 import com.niccholaspage.SandStorm.Validate;
 import com.niccholaspage.SandStorm.language.check.CheckParser;
@@ -131,7 +132,7 @@ public class Parser {
 			throw new ParseException(lineNumber, "Invalid line declaration");
 		}
 
-		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Constants.DEFINE_SIGN)){
+		if (lineType == LineType.VARIABLE_DECLARATION && variableLine.contains(Phrase.DEFINE_SIGN.toString())){
 			VariableParser variableParser = new VariableParser(variableLine);
 			
 			Variable oldVariable = getVariable(variableParser.getName());
@@ -172,7 +173,7 @@ public class Parser {
 		}
 		
 		if (lineType == LineType.IF){
-			if (!containsMethod(variableLine) || !variableLine.contains(Constants.OPEN_BRACKET)){
+			if (!containsMethod(variableLine) || !variableLine.contains(Phrase.OPEN_BRACKET.toString())){
 				throw new ParseException(lineNumber, "Invalid if statement");
 			}
 			
@@ -187,7 +188,7 @@ public class Parser {
 	}
 	
 	private boolean containsMethod(String line){
-		return line.contains(Constants.OPEN_METHOD) && line.contains(Constants.CLOSE_METHOD);
+		return line.contains(Phrase.OPEN_METHOD.toString()) && line.contains(Phrase.CLOSE_METHOD.toString());
 	}
 
 	public Set<Variable> getVariables(){

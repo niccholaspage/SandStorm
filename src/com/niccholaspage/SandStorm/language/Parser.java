@@ -144,7 +144,11 @@ public class Parser {
 			lineTypeDefined(lineType);
 			
 			variables.add(new Variable(variableParser.getName(), variableParser.getValue()));
-		}
+		}else {
+            for (Variable variable : variables){
+                variableLine = variableLine.replace(variable.getName(), variable.getValue() + "");
+            }
+        }
 		
 		if (lineType == LineType.CALL){
 			if (!containsMethod(variableLine)){

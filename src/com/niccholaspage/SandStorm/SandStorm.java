@@ -10,15 +10,16 @@ public class SandStorm {
 				"var red = 9",
 				"var blue =",
 				"call echo()",
-				"call echo(\"I like trains!\")",
+				"call echo(\"Time for a variable test!\")",
+                "call echo(\"nick\")",
 				"call derp()"
 		};
 		
 		new BestParserEver(lines).run();
 	}
 	
-	public static boolean isDebugging(){
-		return true;
+	public final static boolean isDebugging(){
+		return false;
 	}
 	
 	public static String getVersion(){
